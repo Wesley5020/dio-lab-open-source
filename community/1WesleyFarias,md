@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Fórum de Discussão</title>
+</head>
+<body>
+    <header>
+        <h1>Fórum de Discussão</h1>
+    </header>
+    <section id="forum">
+        <!-- Área para listagem de tópicos -->
+    </section>
+    <section id="criar-topico">
+        <h2>Criar Tópico</h2>
+        <input type="text" id="titulo" placeholder="Título">
+        <textarea id="conteudo" placeholder="Conteúdo"></textarea>
+        <button id="criar">Criar Tópico</button>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+section {
+    margin: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+const forum = document.getElementById('forum');
+const titulo = document.getElementById('titulo');
+const conteudo = document.getElementById('conteudo');
+const criar = document.getElementById('criar');
+
+criar.addEventListener('click', () => {
+    const novoTopico = criarTopico(titulo.value, conteudo.value);
+    forum.appendChild(novoTopico);
+    titulo.value = '';
+    conteudo.value = '';
+});
+
+function criarTopico(titulo, conteudo) {
+    const topico = document.createElement('div');
+    topico.classList.add('topico');
+    topico.innerHTML = `
+        <h3>${titulo}</h3>
+        <p>${conteudo}</p>
+    `;
+    return topico;
+}
